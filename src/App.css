@@ -34,6 +34,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   flex-direction:column;
   align-items:center;
   border-radius: 12px;
+  border: 1px solid lightgray;
 }
 .post_section{
   background: rgb(251, 249, 249);
