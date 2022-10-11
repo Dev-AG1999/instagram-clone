@@ -34,7 +34,7 @@ const ImageUpload = ({username} ) => {
 
         console.log('user', username)
         
-        if(progress==100)
+        if(progress===100)
         {
           storage
           .ref("images")
