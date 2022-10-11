@@ -1,0 +1,36 @@
+.post{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    max-width: 400px;
+    background: white;
+    margin: 20px 0;
+    border-radius: 12px;
+    
+}
+.post-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.post_header{
+    display: flex;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+
+}
+.post_header_image{
+    margin-right:15px;
+}
+.post_image{
+    width: 100%;
+    object-fit: contain;
+}
+
+.post_caption{
+    padding: 10px;
+}
+.post_caption_username{
+  margin-right: 10px;
+}
