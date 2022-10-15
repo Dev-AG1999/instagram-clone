@@ -65,8 +65,8 @@ const ImageUpload = ({username} ) => {
   return (
     <div className="image_upload">
       <Modal open={open} onClose={()=>setOpen(false)}>
-<div className="uploading_modal">
-{progress?  (<progress className="uplolad_progress"  value={progress} max="100"/>):(  <progress value={progress} max="100" style={{display:"none"}}/>)}
+<div className="imageuploading_modal">
+{progress?  (<progress className="imageuplolad_progress"  value={progress} max="100"/>):(  <progress value={progress} max="100" style={{display:"none"}}/>)}
 <input className="image_caption"
         type="text"
         placeholder="Enter a caption"
