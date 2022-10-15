@@ -201,14 +201,14 @@ function App() {
                 backgroundColor: "#77A7FF",
                 color: "white",
                 marginTop: "15px",
-                marginBottom: "15px",
+            cursor:"pointer"
               }}
               className="Sign_Up"
             >
               Sign Up
             </Button>
             <Button
-              style={{ color: "black" }}
+              style={{ color: "black", marginTop: "15px" }}
               onClick={() => setOpenSignIn(true)}
             >
               Sign In
