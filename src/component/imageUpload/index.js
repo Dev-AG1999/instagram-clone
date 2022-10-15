@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import firebase from 'firebase/compat/app';
@@ -10,12 +10,15 @@ const ImageUpload = ({username} ) => {
   const [caption, setCaption] = useState("");
   const [progress, setProgress] = useState(0);
   const [image, setImage] = useState(null);
+  const[open,setOpen]=useState(false)
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
+  
   };
+
   const handleUpload = () => {
     //img getting uploaded
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -53,29 +56,30 @@ const ImageUpload = ({username} ) => {
             setImage(null);
           });
         }
-       
-
+      
       }
-
-    
     );
 
-  };
+};
 
   return (
     <div className="image_upload">
-      {progress?  (<progress value={progress} max="100"/>):(  <progress value={progress} max="100" style={{display:"none"}}/>)}
-   
-      <input className="image_file_input"
+      <Modal open={open} onClose={()=>setOpen(false)}>
+<div className="uploading_modal">
+{progress?  (<progress className="uplolad_progress"  value={progress} max="100"/>):(  <progress value={progress} max="100" style={{display:"none"}}/>)}
+<input className="image_caption"
         type="text"
         placeholder="Enter a caption"
         value={caption}
         onChange={(e) => setCaption(e.target.value)}
       />
       <input className="choose_file" type="file" onChange={handleChange}/>
-      <Button className="imageupload_button" onClick={handleUpload}>
+      <button className="imageupload_button" onClick={handleUpload}>
         Upload
-      </Button>
+      </button>
+</div>
+      </Modal>
+      <button className="choose_button" onClick={()=>setOpen(true)}>Choose from your computer</button>
     </div>
   );
 

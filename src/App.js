@@ -70,46 +70,6 @@ function App() {
   };
   return (
     <div className="App">
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <div className="sign_up_modal">
-          <img
-            style={{ marginBottom: "15px" }}
-            alt=""
-            className="app_header_image"
-            src={logo2}
-          />
-          <Input
-            placeholder="User Name"
-            value={username}
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-          ></Input>
-          <Input
-            placeholder="Email"
-            value={email}
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-          ></Input>
-          <Input
-            placeholder="Password"
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          ></Input>
-          <Button
-            onClick={SignUp}
-            type="submit"
-            style={{
-              backgroundColor: "#77A7FF",
-              color: "white",
-              marginTop: "15px",
-            }}
-            className="Sign_Up"
-          >
-            Sign Up
-          </Button>
-        </div>
-      </Modal>
       <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
         <div className="sign_in_modal">
           <img
@@ -138,6 +98,7 @@ function App() {
               backgroundColor: "#77A7FF",
               color: "white",
               marginTop: "15px",
+              cursor: "pointer",
             }}
             className="Sign_Up"
           >
@@ -155,39 +116,42 @@ function App() {
           )}
         </div>
       </Modal>
-  {user?(    <div className="app_wrapper">
-        <div className="app_header_wrapper">
-          <div className="app_header">
-            <img alt="" className="app_header_image" src={logo2} />
-            <Button
-              onClick={() => setOpenImageUpload(true)}
-              style={{ color: "black" }}
-            >
-              <AddToPhotosIcon></AddToPhotosIcon>
-            </Button>
-         
-              <Button style={{ color: "black" }} onClick={() => auth.signOut()}>
+      {user ? (
+        <div className="app_wrapper">
+          <div className="app_header_wrapper">
+            <div className="app_header">
+              <img alt="" className="app_header_image" src={logo2} />
+              <Button
+                onClick={() => setOpenImageUpload(true)}
+                style={{ color: "black", cursor: "pointer" }}
+              >
+                <AddToPhotosIcon></AddToPhotosIcon>
+              </Button>
+
+              <Button
+                style={{ color: "black", cursor: "pointer" }}
+                onClick={() => auth.signOut()}
+              >
                 Log Out
               </Button>
-            
+            </div>
           </div>
-        </div>
 
-        <div className="post_section">
-          <div className="post_left">
-            {posts.map(({ id, post }) => (
-              <Post
-                key={id}
-                postId={id}
-                userimage={post.userimage}
-                username={post.username}
-                user={user}
-                image={post.image}
-                caption={post.caption}
-              />
-            ))}
-          </div>
-          {/* <div className="post_right">
+          <div className="post_section">
+            <div className="post_left">
+              {posts.map(({ id, post }) => (
+                <Post
+                  key={id}
+                  postId={id}
+                  userimage={post.userimage}
+                  username={post.username}
+                  user={user}
+                  image={post.image}
+                  caption={post.caption}
+                />
+              ))}
+            </div>
+            {/* <div className="post_right">
   <InstagramEmbed
   url='https://www.instagram.com/p/CjgNwy2hAOMTZCBpt-JmwFeYxxfUSXcuJN51w80/'
   maxWidth={320}
@@ -201,56 +165,57 @@ function App() {
   onFailure={() => {}}
 />
   </div> */}
+          </div>
         </div>
-      </div>):(
-        
-    <div className="authentication">
-     
-         <div className="sign_up_modal">
-          <img
-            style={{ marginBottom: "15px" }}
-            alt=""
-            className="app_header_image"
-            src={logo2}
-          />
-          <Input
-            placeholder="User Name"
-            value={username}
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-          ></Input>
-          <Input
-            placeholder="Email"
-            value={email}
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-          ></Input>
-          <Input
-            placeholder="Password"
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          ></Input>
-          <Button
-            onClick={SignUp}
-            type="submit"
-            style={{
-              backgroundColor: "#77A7FF",
-              color: "white",
-              marginTop: "15px",
-            }}
-            className="Sign_Up"
-          >
-            Sign Up
-          </Button>
-          <Button
-                  style={{ color: "black" }}
-                  onClick={() => setOpenSignIn(true)}
-                >
-                  Sign In
-                </Button>
+      ) : (
+        <div className="authentication">
+          <div className="sign_up_modal">
+            <img
+              style={{ marginBottom: "15px" }}
+              alt=""
+              className="app_header_image"
+              src={logo2}
+            />
+            <Input
+              placeholder="User Name"
+              value={username}
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+            ></Input>
+            <Input
+              placeholder="Email"
+              value={email}
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            ></Input>
+            <Input
+              placeholder="Password"
+              value={password}
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></Input>
+            <Button
+              onClick={SignUp}
+              type="submit"
+              style={{
+                backgroundColor: "#77A7FF",
+                color: "white",
+                marginTop: "15px",
+                marginBottom: "15px",
+              }}
+              className="Sign_Up"
+            >
+              Sign Up
+            </Button>
+            <Button
+              style={{ color: "black" }}
+              onClick={() => setOpenSignIn(true)}
+            >
+              Sign In
+            </Button>
+          </div>
         </div>
-    </div>)}
+      )}
     </div>
   );
 }
