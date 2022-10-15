@@ -1,12 +1,14 @@
 .image_upload{
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    width: 60%;
+    width: 100%;
     background:white;
     justify-content: center;
     align-items: center;
 }
 .progress{
+    width: 100%;
+}
+.image_file_input{
     width: 100%;
 }

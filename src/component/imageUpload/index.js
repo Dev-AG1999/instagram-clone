@@ -4,6 +4,7 @@ import { useState } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { storage, db } from "../../firebase";
+import "../imageUpload/style.css";
 
 const ImageUpload = ({username} ) => {
   const [caption, setCaption] = useState("");
@@ -62,15 +63,16 @@ const ImageUpload = ({username} ) => {
   };
 
   return (
-    <div>
-        <progress value={progress} max="100"/>
-      <input
+    <div className="image_upload">
+      {progress?  (<progress value={progress} max="100"/>):(  <progress value={progress} max="100" style={{display:"none"}}/>)}
+   
+      <input className="image_file_input"
         type="text"
         placeholder="Enter a caption"
         value={caption}
         onChange={(e) => setCaption(e.target.value)}
       />
-      <input type="file" onChange={handleChange}/>
+      <input className="choose_file" type="file" onChange={handleChange}/>
       <Button className="imageupload_button" onClick={handleUpload}>
         Upload
       </Button>

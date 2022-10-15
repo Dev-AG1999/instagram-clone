@@ -34,3 +34,30 @@
 .post_caption_username{
   margin-right: 10px;
 }
+.post_comment_box{
+width: 100%;
+flex: 1;
+border: none;
+padding: 10px 0; 
+outline: none;
+}
+.post_comment_section{
+    display: flex;
+    padding: 10px ;
+    border-top: 1px solid lightgrey;
+}
+.post_button{
+    flex: 0;
+    background:transparent;
+    border: none;
+  
+}
+.post_comments{
+    padding: 10px;
+}
+.button_name{
+    color:#0095f6;
+}
+.comment{
+    padding: 5px 0;
+}

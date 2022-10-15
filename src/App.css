@@ -9,7 +9,7 @@
 border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 .app_header{
-  padding: 20px;
+  padding: 20px 0;
   object-fit: contain;
   display: flex;
   justify-Content: space-between;
@@ -52,4 +52,9 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   flex-direction:column;
   align-items:center;
   border-radius: 12px;
+}
+@media screen and (max-width:560px) {
+  .app_header{
+    width: 100%;
+  }
 }
