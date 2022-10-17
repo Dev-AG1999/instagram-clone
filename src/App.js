@@ -10,6 +10,8 @@ import ImageUpload from "./component/imageUpload";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 
 function App() {
+
+  // setting states
   const [posts, setPosts] = useState([]);
   const [setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
@@ -19,6 +21,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
 
+  // useeffect for authentication
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -35,6 +38,8 @@ function App() {
     };
   }, [user, username]);
 
+
+  // use effect for posts
   useEffect(() => {
     db.collection("post")
       .orderBy("timestamp", "desc")
@@ -48,6 +53,7 @@ function App() {
       });
   }, []);
 
+  // function for sign up button
   const SignUp = (e) => {
     e.preventDefault();
     auth
@@ -61,6 +67,7 @@ function App() {
     setOpen(false);
   };
 
+   // function for sign in button
   const SignIn = (e) => {
     e.preventDefault();
     auth
@@ -68,6 +75,8 @@ function App() {
       .catch((error) => alert(error.message));
     setOpenSignIn(false);
   };
+
+  // returning app
   return (
     <div className="App">
       <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
@@ -116,6 +125,8 @@ function App() {
           )}
         </div>
       </Modal>
+
+      {/* conditional rendering if its user */}
       {user ? (
         <div className="app_wrapper">
           <div className="app_header_wrapper">
@@ -151,20 +162,6 @@ function App() {
                 />
               ))}
             </div>
-            {/* <div className="post_right">
-  <InstagramEmbed
-  url='https://www.instagram.com/p/CjgNwy2hAOMTZCBpt-JmwFeYxxfUSXcuJN51w80/'
-  maxWidth={320}
-  hideCaption={false}
-  containerTagName='div'
-  protocol=''
-  injectScript
-  onLoading={() => {}}
-  onSuccess={() => {}}
-  onAfterRender={() => {}}
-  onFailure={() => {}}
-/>
-  </div> */}
           </div>
         </div>
       ) : (
