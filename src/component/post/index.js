@@ -105,13 +105,13 @@ function Post({ userimage, postId, username, user, image, caption }) {
                   borderRadius: "8px",
                 }}
               >
-                ({" "}
+                
                 <button
                   style={{ background: "none", border: "none" }}
                   onClick={() => postDelete()}>
                   Delete
                 </button>
-                )
+                
               </div>
             ) : (
               <div className="post_options" style={{ display: "none" }}></div>
