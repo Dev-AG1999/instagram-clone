@@ -49,7 +49,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
   };
 
   const postDelete=()=>{
-    if (username===user){
+    if (user===user){
     db.collection("post").doc(postId).delete().then(() => {
       console.log("Document successfully deleted!");
     }).catch((error) => {
@@ -97,7 +97,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
                       width: "120px",
                     }}
                   >
-                  {username===user?(  <button onClick={() => postDelete()}>
+                  {user===username?(  <button onClick={() => postDelete()}>
                       Delete
                     </button>):null}
                   </div>
