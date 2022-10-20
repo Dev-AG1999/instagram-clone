@@ -49,7 +49,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
   };
 
   const postDelete=()=>{
-    if (user===user){
+    if (user===username){
     db.collection("post").doc(postId).delete().then(() => {
       console.log("Document successfully deleted!");
     }).catch((error) => {
