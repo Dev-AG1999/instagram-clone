@@ -7,7 +7,7 @@ import "firebase/compat/firestore";
 import { db } from "../../firebase";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Modal } from "@mui/material";
-// import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { deleteDoc,doc } from "firebase/firestore";
 
 function Post({ userimage, postId, username, user, image, caption }) {
   // defining states
@@ -39,23 +39,35 @@ function Post({ userimage, postId, username, user, image, caption }) {
   const postComment = (e) => {
     e.preventDefault();
     db.collection("post").doc(postId).collection("comments").add({
-      id: Math.random(),
+      id:Math.random(),
       text: comment,
       username: user,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setComment("");
+   
   };
 
   const postDelete=()=>{
+    if (username===user){
     db.collection("post").doc(postId).delete().then(() => {
       console.log("Document successfully deleted!");
     }).catch((error) => {
       console.error("Error removing document: ", error);
     });
   }
+  }
+
+  // const handleDelete = async (id) => {
+  //   const taskDocRef = doc(db, 'comments', id)
+  //   try{
+  //     await deleteDoc(taskDocRef)
+  //   } catch (err) {
+  //     alert(err)
+  //   }
+  // }
   const commentDelete = (id) => {
-    // db.collection("post").doc(postId).collection("comments").doc(Comment.id).delete().then(() => {
+    // db.collection("post").doc(postId).collection("comments").doc().delete().then(() => {
     //   console.log("Document successfully deleted!");
     // }).catch((error) => {
     //   console.error("Error removing document: ", error);
@@ -85,9 +97,9 @@ function Post({ userimage, postId, username, user, image, caption }) {
                       width: "120px",
                     }}
                   >
-                    <button onClick={() => postDelete()}>
+                  {username===user?(  <button onClick={() => postDelete()}>
                       Delete
-                    </button>
+                    </button>):null}
                   </div>
                 </Modal>
        <div className="user_details" style={{display:"flex",alignItems:"center"}}> <Avatar className="post_header_image" alt="" src={userimage}></Avatar>
