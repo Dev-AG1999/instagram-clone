@@ -85,24 +85,27 @@ function Post({ userimage, postId, username, user, image, caption }) {
       <div className="post">
         <div className="post_header" style={{display:"flex",justifyContent:"space-between"}}>
         <Modal open={postOption} onClose={() => setPostOption(false)}>
-                  <div
-                    className="comment_options"
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%,-50%)",
-                      display: "flex",
-                      background: "white",
-                      width: "120px",
-                      padding:"10px",
-                      borderRadius:"8px"
-                    }}
-                  >
-                  {user===username?(  <button style={{background:"none",border:"none"}} onClick={() => postDelete()}>
-                      Delete
-                    </button>):null}
-                  </div>
+          {user===username?(
+             <div
+             className="comment_options"
+             style={{
+               position: "absolute",
+               top: "50%",
+               left: "50%",
+               transform: "translate(-50%,-50%)",
+               display: "flex",
+               background: "white",
+               width: "120px",
+               padding:"10px",
+               borderRadius:"8px"
+             }}
+           >
+         (  <button style={{background:"none",border:"none"}} onClick={() => postDelete()}>
+               Delete
+             </button>)
+           </div>
+          ):null}
+                 
                 </Modal>
        <div className="user_details" style={{display:"flex",alignItems:"center"}}> <Avatar className="post_header_image" alt="" src={userimage}></Avatar>
           <h5>{username}</h5></div>
