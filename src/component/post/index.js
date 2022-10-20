@@ -95,9 +95,11 @@ function Post({ userimage, postId, username, user, image, caption }) {
                       display: "flex",
                       background: "white",
                       width: "120px",
+                      padding:"10px",
+                      borderRadius:"8px"
                     }}
                   >
-                  {user===username?(  <button onClick={() => postDelete()}>
+                  {user===username?(  <button style={{background:"none",border:"none"}} onClick={() => postDelete()}>
                       Delete
                     </button>):null}
                   </div>
@@ -138,9 +140,12 @@ function Post({ userimage, postId, username, user, image, caption }) {
                       display: "flex",
                       background: "white",
                       width: "120px",
+                      padding:"10px",
+                      borderRadius:"8px"
+                      
                     }}
                   >
-                    <button onClick={() => commentDelete(comment.id)}>
+                    <button style={{background:"none",border:"none"}} onClick={() => commentDelete(comment.id)}>
                       Delete
                     </button>
                   </div>
