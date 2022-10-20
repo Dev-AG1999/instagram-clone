@@ -8,7 +8,6 @@ import { db } from "../../firebase";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Modal } from "@mui/material";
 
-
 function Post({ userimage, postId, username, user, image, caption }) {
   // defining states
   const [comments, setComments] = useState([]);
@@ -39,24 +38,27 @@ function Post({ userimage, postId, username, user, image, caption }) {
   const postComment = (e) => {
     e.preventDefault();
     db.collection("post").doc(postId).collection("comments").add({
-      id:Math.random(),
+      id: Math.random(),
       text: comment,
       username: user,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setComment("");
-   
   };
 
-  const postDelete=()=>{
-    if (user===username){
-    db.collection("post").doc(postId).delete().then(() => {
-      console.log("Document successfully deleted!");
-    }).catch((error) => {
-      console.error("Error removing document: ", error);
-    });
-  }
-  }
+  const postDelete = () => {
+    if (user === username) {
+      db.collection("post")
+        .doc(postId)
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+    }
+  };
 
   // const handleDelete = async (id) => {
   //   const taskDocRef = doc(db, 'comments', id)
@@ -83,36 +85,55 @@ function Post({ userimage, postId, username, user, image, caption }) {
   return (
     <div className="post-wrapper">
       <div className="post">
-        <div className="post_header" style={{display:"flex",justifyContent:"space-between"}}>
-        <Modal open={postOption} onClose={() => setPostOption(false)}>
-                 {user===username?(
-                   <div
-                   className="post_options"
-                   style={{
-                     position: "absolute",
-                     top: "50%",
-                     left: "50%",
-                     transform: "translate(-50%,-50%)",
-                     display: "flex",
-                     background: "white",
-                     width: "120px",
-                     padding:"10px",
-                     borderRadius:"8px"
-                   }}
-                 >
-             (  <button style={{background:"none",border:"none"}} onClick={() => postDelete()}>
-                     Delete
-                   </button>)
-                 </div>
-                 ):(<div className="post_options" style={{display:"none"}}></div>)
-                }
-                </Modal>
-       <div className="user_details" style={{display:"flex",alignItems:"center"}}> <Avatar className="post_header_image" alt="" src={userimage}></Avatar>
-          <h5>{username}</h5></div>
-         
-          <button className="post_option" onClick={() => setPostOption(true)}>
-                  <MoreVertIcon></MoreVertIcon>
+        <div
+          className="post_header"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <Modal open={postOption} onClose={() => setPostOption(false)}>
+            {user === username ? (
+              <div
+                className="post_options"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%,-50%)",
+                  display: "flex",
+                  background: "white",
+                  width: "120px",
+                  padding: "10px",
+                  borderRadius: "8px",
+                }}
+              >
+                ({" "}
+                <button
+                  style={{ background: "none", border: "none" }}
+                  onClick={() => postDelete()}
+                >
+                  Delete
                 </button>
+                )
+              </div>
+            ) : (
+              <div className="post_options" style={{ display: "none" }}></div>
+            )}
+          </Modal>
+          <div
+            className="user_details"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            {" "}
+            <Avatar
+              className="post_header_image"
+              alt=""
+              src={userimage}
+            ></Avatar>
+            <h5>{username}</h5>
+          </div>
+
+          <button className="post_option" onClick={() => setPostOption(true)}>
+            <MoreVertIcon></MoreVertIcon>
+          </button>
         </div>
         <img className="post_image" alt="" src={image} />
         <span className="post_caption">
@@ -143,12 +164,14 @@ function Post({ userimage, postId, username, user, image, caption }) {
                       display: "flex",
                       background: "white",
                       width: "120px",
-                      padding:"10px",
-                      borderRadius:"8px"
-                      
+                      padding: "10px",
+                      borderRadius: "8px",
                     }}
                   >
-                    <button style={{background:"none",border:"none"}} onClick={() => commentDelete(comment.id)}>
+                    <button
+                      style={{ background: "none", border: "none" }}
+                      onClick={() => commentDelete(comment.id)}
+                    >
                       Delete
                     </button>
                   </div>

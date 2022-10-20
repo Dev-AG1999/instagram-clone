@@ -10,7 +10,6 @@ import ImageUpload from "./component/imageUpload";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 
 function App() {
-
   // setting states
   const [posts, setPosts] = useState([]);
   const [setOpen] = useState(false);
@@ -37,7 +36,6 @@ function App() {
       unsubscribe();
     };
   }, [user, username]);
-
 
   // use effect for posts
   useEffect(() => {
@@ -67,7 +65,7 @@ function App() {
     setOpen(false);
   };
 
-   // function for sign in button
+  // function for sign in button
   const SignIn = (e) => {
     e.preventDefault();
     auth
@@ -198,7 +196,7 @@ function App() {
                 backgroundColor: "#77A7FF",
                 color: "white",
                 marginTop: "15px",
-            cursor:"pointer"
+                cursor: "pointer",
               }}
               className="Sign_Up"
             >
