@@ -7,7 +7,7 @@ import "firebase/compat/firestore";
 import { db } from "../../firebase";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Modal } from "@mui/material";
-import { deleteDoc,doc } from "firebase/firestore";
+
 
 function Post({ userimage, postId, username, user, image, caption }) {
   // defining states
