@@ -108,8 +108,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
                 ({" "}
                 <button
                   style={{ background: "none", border: "none" }}
-                  onClick={() => postDelete()}
-                >
+                  onClick={() => postDelete()}>
                   Delete
                 </button>
                 )
@@ -122,7 +121,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
             className="user_details"
             style={{ display: "flex", alignItems: "center" }}
           >
-            {" "}
+
             <Avatar
               className="post_header_image"
               alt=""
@@ -170,8 +169,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
                   >
                     <button
                       style={{ background: "none", border: "none" }}
-                      onClick={() => commentDelete(comment.id)}
-                    >
+                      onClick={() => commentDelete(comment.id)}>
                       Delete
                     </button>
                   </div>
