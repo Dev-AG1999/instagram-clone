@@ -105,7 +105,6 @@ function Post({ userimage, postId, username, user, image, caption }) {
                   borderRadius: "8px",
                 }}
               >
-                
                 <button
                   style={{ background: "none", border: "none" }}
                   onClick={() => postDelete()}>
