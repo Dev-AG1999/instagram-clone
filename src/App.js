@@ -217,8 +217,6 @@ setOpen(true);
               Sign Up
             </Button>
             <p>
-             
-            
               Already have an account?<button  style={{ color: "rgb(119, 167, 255)", marginTop: "15px",border:"none",background:"transparent",cursor:"pointer" }}
               onClick={modalSignIn}>Sign in</button> 
             </p>
