@@ -4,7 +4,7 @@ import "../../component/post/style.css";
 import { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { db,storage } from "../../firebase";
+import { db } from "../../firebase";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Modal } from "@mui/material";
 import postimage from "../../assets/post-image.png";

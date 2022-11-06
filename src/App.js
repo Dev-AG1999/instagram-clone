@@ -12,7 +12,7 @@ import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 function App() {
   // setting states
   const [posts, setPosts] = useState([]);
-  const [open,setOpen] = useState(false);
+  const [setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openImageUpload, setOpenImageUpload] = useState(false);
   const [email, setEmail] = useState("");
