@@ -77,7 +77,6 @@ function App() {
   };
 const modalSignIn =(e)=>{
   e.preventDefault();
-  setOpen(false);
   setOpenSignIn(true);
 
 }
