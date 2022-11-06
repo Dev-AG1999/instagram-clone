@@ -12,7 +12,7 @@ import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 function App() {
   // setting states
   const [posts, setPosts] = useState([]);
-  const [setOpen] = useState(false);
+  const [open,setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openImageUpload, setOpenImageUpload] = useState(false);
   const [email, setEmail] = useState("");
@@ -63,6 +63,7 @@ function App() {
       })
       .catch((error) => alert(error.message));
     setOpen(false);
+    
   };
 
   // function for sign in button
@@ -72,8 +73,20 @@ function App() {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
     setOpenSignIn(false);
+    setOpen(false);
   };
+const modalSignIn =(e)=>{
+  e.preventDefault();
+  setOpen(false);
+  setOpenSignIn(true);
 
+}
+
+  const LogOut=(e)=>{
+    e.preventDefault();
+    auth.signOut()
+setOpen(true);
+  }
   // returning app
   return (
     <div className="App">
@@ -113,7 +126,7 @@ function App() {
           </Button>
         </div>
       </Modal>
-
+    
       <Modal open={openImageUpload} onClose={() => setOpenImageUpload(false)}>
         <div className="upload_modal">
           {user ? (
@@ -139,7 +152,7 @@ function App() {
 
               <Button
                 style={{ color: "black", cursor: "pointer" }}
-                onClick={() => auth.signOut()}
+                onClick={LogOut}
               >
                 Log Out
               </Button>
@@ -164,7 +177,8 @@ function App() {
         </div>
       ) : (
         <div className="authentication">
-          <div className="sign_up_modal">
+         
+             <div className="sign_up_modal">
             <img
               style={{ marginBottom: "15px" }}
               alt=""
@@ -202,13 +216,15 @@ function App() {
             >
               Sign Up
             </Button>
-            <Button
-              style={{ color: "black", marginTop: "15px" }}
-              onClick={() => setOpenSignIn(true)}
-            >
-              Sign In
-            </Button>
+            <p>
+             
+            
+              Already have an account?<button  style={{ color: "rgb(119, 167, 255)", marginTop: "15px",border:"none",background:"transparent",cursor:"pointer" }}
+              onClick={modalSignIn}>Sign in</button> 
+            </p>
           </div>
+       
+      
         </div>
       )}
     </div>
