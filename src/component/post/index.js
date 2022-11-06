@@ -52,7 +52,11 @@ function Post({ userimage, postId, username, user, image, caption }) {
       });
   }, []);
 
-
+const BackBtn=(e)=>
+{
+e.preventDefault();
+  setOpenProfile(false)
+}
 
   // comment post button
 
@@ -110,6 +114,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
 <div className="profile_wrapper">
 <div className="profile_header">
   <h3>{user}</h3>
+  <button style={{background:"transparent",border:"none",textAlign:"center",fontSize:"20px",cursor:"pointer"}} onClick={BackBtn}><strong>↩</strong></button>
 </div>
 <div className="profile_details">
   <Avatar style={{height:"100px",width:"100px"}}  src={postimage}></Avatar>
