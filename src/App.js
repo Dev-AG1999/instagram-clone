@@ -8,11 +8,12 @@ import { Button, Input } from "@mui/material";
 import ImageUpload from "./component/imageUpload";
 // import InstagramEmbed from "react-instagram-embed";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
+import { ProfileUser } from "./component/profile-pages/profilePageUser";
 
 function App() {
   // setting states
   const [posts, setPosts] = useState([]);
-  const [setOpen] = useState(false);
+  const [open,setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openImageUpload, setOpenImageUpload] = useState(false);
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ function App() {
     });
     return () => {
       unsubscribe();
+    
     };
   }, [user, username]);
 
@@ -59,11 +61,13 @@ function App() {
       .then((authUser) => {
         return authUser.user.updateProfile({
           displayName: username,
+          user:username
         });
       })
       .catch((error) => alert(error.message));
-    setOpen(false);
-    
+  setOpen(false);
+    console.log("user",username)
+  
   };
 
   // function for sign in button
@@ -73,19 +77,23 @@ function App() {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
     setOpenSignIn(false);
-    setOpen(false);
+    
   };
+
+  // button to open sign in modal
 const modalSignIn =(e)=>{
   e.preventDefault();
   setOpenSignIn(true);
 
 }
 
+// button for log out
   const LogOut=(e)=>{
     e.preventDefault();
     auth.signOut()
 setOpen(true);
   }
+
   // returning app
   return (
     <div className="App">
@@ -172,12 +180,17 @@ setOpen(true);
                 />
               ))}
             </div>
+           <div className="right">
+            <ProfileUser username={username} user={user}/>
+           </div>
+          
+            
           </div>
         </div>
       ) : (
         <div className="authentication">
          
-             <div className="sign_up_modal">
+             <div Open={open} onClose={()=>setOpen(false)}  className="sign_up_modal">
             <img
               style={{ marginBottom: "15px" }}
               alt=""

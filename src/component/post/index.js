@@ -11,14 +11,18 @@ import postimage from "../../assets/post-image.png";
 import "../../component/mediaquery.css";
 import { ProfilePostItems } from "../profile-post-items";
 
+
+
 function Post({ userimage, postId, username, user, image, caption }) {
   // defining states
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const [open, setOpen] = useState(false);
   const [postOption, setPostOption] = useState(false);
-  const[openProfile,setOpenProfile]=useState(false);
-  const [posts,setPosts]=useState([])
+  const [openProfile, setOpenProfile] = useState(false);
+  const [posts, setPosts] = useState([]);
+  
+
 
   // use effect listener for fetching comments
   useEffect(() => {
@@ -39,7 +43,9 @@ function Post({ userimage, postId, username, user, image, caption }) {
   }, [postId]);
 
 
+
   useEffect(() => {
+
     db.collection("post")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
@@ -52,11 +58,11 @@ function Post({ userimage, postId, username, user, image, caption }) {
       });
   }, []);
 
-const BackBtn=(e)=>
-{
-e.preventDefault();
-  setOpenProfile(false)
-}
+  // back button
+  const BackBtn = (e) => {
+    e.preventDefault();
+    setOpenProfile(false);
+  };
 
   // comment post button
 
@@ -70,7 +76,6 @@ e.preventDefault();
     });
     setComment("");
   };
-
 
   const postDelete = () => {
     if (user === username) {
@@ -86,21 +91,8 @@ e.preventDefault();
     }
   };
 
-  // const handleDelete = async (id) => {
-  //   const taskDocRef = doc(db, 'comments', id)
-  //   try{
-  //     await deleteDoc(taskDocRef)
-  //   } catch (err) {
-  //     alert(err)
-  //   }
-  // }
-  const commentDelete = (id) => {
-    // db.collection("post").doc(postId).collection("comments").doc().delete().then(() => {
-    //   console.log("Document successfully deleted!");
-    // }).catch((error) => {
-    //   console.error("Error removing document: ", error);
-    // });
 
+  const commentDelete = (id) => {
     const newArray = comments.filter((comment) => {
       return comment.id !== id;
     });
@@ -110,54 +102,122 @@ e.preventDefault();
 
   return (
     <div className="post-wrapper">
-      <Modal open={openProfile} onClose={()=>setOpenProfile(false)}>
-<div className="profile_wrapper">
-<div className="profile_header">
-  <h3>{user}</h3>
-  <button style={{background:"transparent",border:"none",textAlign:"center",fontSize:"20px",cursor:"pointer"}} onClick={BackBtn}><strong>↩</strong></button>
-</div>
-<div className="profile_details">
-  <Avatar style={{height:"100px",width:"100px"}}  src={postimage}></Avatar>
-<div className="profile_data">
-<div className="postsNo">
-    <h2>10</h2>
-    <p>Posts</p>
-  </div>
-  <div className="followers">
-    <h2>498</h2>
-    <p>Followers</p>
-  </div>
-  <div className="following">
-    <h2>498</h2>
-    <p>Following</p>
-  </div>
-</div>
-</div>
-<div className="userBio"><h3>{user}</h3>
-<p>my name is {user}</p>
-</div>
-<div className="profile_editbtn">
-  <button>Edit profile</button>
-</div>
-<div className="all_posts">
-<div className="profile_post_wrapper">
-{posts.map(({ id, post }) => (
-                <ProfilePostItems
-                  key={id}
-                  src={post.image}
-                  postId={id}
-                  userimage={post.userimage}
-                  username={post.username}
-                  user={user}
-                  image={post.image}
-                  caption={post.caption}
-                />
-              ))}
-</div>
-</div>
-</div>
-
-      </Modal>
+      {username ===user ? (
+        <Modal open={openProfile} onClose={() => setOpenProfile(false)}>
+          <div className="Profile_wrapper">
+            <div className="Profile_header">
+              <h3>{user}</h3>
+              <button
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  textAlign: "center",
+                  fontSize: "20px",
+                  cursor: "pointer",
+                }}
+                onClick={BackBtn}
+              >
+                <strong>↩</strong>
+              </button>
+            </div>
+            <div className="Profile_details">
+              <Avatar
+                style={{ height: "100px", width: "100px" }}
+                src={postimage}
+              ></Avatar>
+              <div className="Profile_data">
+                <div className="PostsNo">
+                  <h2>10</h2>
+                  <p>Posts</p>
+                </div>
+                <div className="Followers">
+                  <h2>498</h2>
+                  <p>Followers</p>
+                </div>
+                <div className="Following">
+                  <h2>498</h2>
+                  <p>Following</p>
+                </div>
+              </div>
+            </div>
+            <div className="UserBio">
+              <h3>{user}</h3>
+              <p>my name is {user}</p>
+            </div>
+            <div className="Profile_editbtn">
+              <button>Edit profile</button>
+            </div>
+            <div className="All_posts">
+              <div className="Profile_post_wrapper">
+                {posts.map(({ id, post }) => (
+                  <ProfilePostItems
+                    key={post.id}
+                    src={post.image}
+                    postId={id}
+                    user={username}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </Modal>
+        
+      ) : (
+        <Modal open={openProfile} onClose={() => setOpenProfile(false)}>
+          <div className="Profile_wrapper">
+            <div className="Profile_header">
+              <h3>{username}</h3>
+              <button
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  textAlign: "center",
+                  fontSize: "20px",
+                  cursor: "pointer",
+                }}
+                onClick={BackBtn}
+              >
+                <strong>↩</strong>
+              </button>
+            </div>
+            <div className="Profile_details">
+              <Avatar
+                style={{ height: "100px", width: "100px" }}
+                src={postimage}
+              ></Avatar>
+              <div className="Profile_data">
+                <div className="PostsNo">
+                  <h2>10</h2>
+                  <p>Posts</p>
+                </div>
+                <div className="Followers">
+                  <h2>498</h2>
+                  <p>Followers</p>
+                </div>
+                <div className="Following">
+                  <h2>498</h2>
+                  <p>Following</p>
+                </div>
+              </div>
+            </div>
+            <div className="UserBio">
+              <h3>{username}</h3>
+              <p>my name is {username}</p>
+            </div>
+            <div className="Profile_editbtn">
+              <button>Follow</button>
+            </div>
+            <div className="All_posts">
+              <div className="Profile_post_wrapper">
+                {posts.map(({ id, post }) => (
+                  <ProfilePostItems key={post.id} src={post.image} postId={id} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </Modal>
+        
+      )}
       <div className="post">
         <div
           className="post_header"
@@ -181,10 +241,10 @@ e.preventDefault();
               >
                 <button
                   style={{ background: "none", border: "none" }}
-                  onClick={() => postDelete()}>
+                  onClick={() => postDelete()}
+                >
                   Delete
                 </button>
-                
               </div>
             ) : (
               <div className="post_options" style={{ display: "none" }}></div>
@@ -194,15 +254,17 @@ e.preventDefault();
             className="user_details"
             style={{ display: "flex", alignItems: "center" }}
           >
-
             <Avatar
               className="post_header_image"
               alt=""
               src={userimage}
-            ></Avatar><button style={{background:"transparent",border:"none"}} onClick={()=>setOpenProfile(true)} >
-         <h5 style={{cursor:"pointer"}}>{username}</h5>
-         </button>
-
+            ></Avatar>
+            <button
+              style={{ background: "transparent", border: "none" }}
+              onClick={()=>setOpenProfile(true)}
+            >
+              <h5 style={{ cursor: "pointer" }}>{username}</h5>
+            </button>
           </div>
 
           <button className="post_option" onClick={() => setPostOption(true)}>
@@ -244,7 +306,8 @@ e.preventDefault();
                   >
                     <button
                       style={{ background: "none", border: "none" }}
-                      onClick={() => commentDelete(comment.id)}>
+                      onClick={() => commentDelete(comment.id)}
+                    >
                       Delete
                     </button>
                   </div>

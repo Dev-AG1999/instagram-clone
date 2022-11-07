@@ -79,45 +79,46 @@ opacity: 1;
   border:none;
  
 }
-.profile_wrapper{
+.Profile_wrapper{
     background-color: white;
     height:100%;
-    margin:0 auto;
-    width: 60%;
+    margin: auto;
+    width: 500PX;
     overflow-y: scroll;
 }
 
-.profile_header{
+.Profile_header{
     padding: 15px;
     border-bottom: 1px solid lightgrey;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
 }
-.profile_details{
+.Profile_details{
     display: flex;
     justify-content: space-between;
     margin: 15px;
 }
-.profile_data{
+.Profile_data{
     width: 100%;
     display: flex;
     justify-content: space-evenly;
 }
-.postsNo,.followers,.following{
+.PostsNo,.Followers,.Following{
 display: flex;
 justify-content: center;
 align-items: center;
 text-align: center;
 flex-direction: column;
 }
-.userBio{
+.UserBio{
     padding: 0 15px;
 }
-.profile_editbtn{
+.Profile_editbtn{
     display: flex;
   
 }
-.profile_editbtn>button{
+.Profile_editbtn>button{
     margin:10px 15px;
     width: 100%;
     border: none;
@@ -128,15 +129,16 @@ flex-direction: column;
     color: white;
 
 }
-.all_posts{
+.All_posts{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-.profile_post_wrapper{
+.Profile_post_wrapper{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin-left: 8px;
 
    
 }

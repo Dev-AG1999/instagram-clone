@@ -1,0 +1,68 @@
+.profile_wrapper{
+    background-color: white;
+    height: auto;
+    width: 100%;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    border: 1px solid lightgrey;
+
+}
+.profile_wrapper::-webkit-scrollbar {
+    display: none;
+  }
+.profile_header{
+    padding: 15px;
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    justify-content: space-between;
+}
+.profile_details{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+.profile_data{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.postsNo,.followers,.following{
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+flex-direction: column;
+}
+.userBio{
+    padding: 0 15px;
+}
+.profile_editbtn{
+    display: flex;
+  
+}
+.profile_editbtn>button{
+    margin:10px 15px;
+    width: 100%;
+    border: none;
+    background-color:#77A7FF;
+    border-radius: 8px;
+    padding:5px 10px;
+    letter-spacing: 1px;
+    color: white;
+
+}
+.all_posts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.profile_post_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 8px;
+
+   
+}

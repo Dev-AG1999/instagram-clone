@@ -1,6 +1,33 @@
 
 @media screen and (max-width:660px){
-    .profile_wrapper{
+    .Profile_wrapper{
         width: 100%;
     }
+ 
 }
+
+@media screen and (max-width:930px){
+    .right{
+        display: none;
+    }
+    .post_left{
+        width:100%;
+        margin-right: 0;
+    }
+ .post_section{
+ 
+    padding: 0 0;
+  
+ }
+}
+@media screen and (max-width:560px) {
+    .app_header{
+      width: 100%;
+    }
+    .post_section{
+  border: none;
+  width: 100%;
+  
+      
+     }
+  }

@@ -2,11 +2,17 @@
   margin: 0;
 }
 .app_wrapper{
-  margin:auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 .app_header_wrapper{
   width: 100%;
-border-bottom: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.21);
+  position: fixed;
+  z-index: 999;
+  background: white
 }
 .app_header{
   padding: 20px 0;
@@ -38,6 +44,13 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 .post_section{
   background: rgb(251, 249, 249);
+  display: flex;
+  justify-content:center;
+  width: 60%;
+  margin: 80px auto 0 auto;
+  padding: 0 10px;
+  border: 1px solid lightgrey;
+
 }
 .upload_modal{
   padding:50px;
@@ -53,8 +66,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   align-items:center;
   border-radius: 12px;
 }
-@media screen and (max-width:560px) {
-  .app_header{
-    width: 100%;
-  }
+.post_left{
+  width: 100%;
+  margin-right: 8px;
 }
