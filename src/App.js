@@ -20,6 +20,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
+ 
 
   // useeffect for authentication
   useEffect(() => {
@@ -137,7 +138,7 @@ setOpen(true);
       <Modal open={openImageUpload} onClose={() => setOpenImageUpload(false)}>
         <div className="upload_modal">
           {user ? (
-            <ImageUpload username={user} />
+            <ImageUpload userId={user.id} username={user} />
           ) : (
             <h3>Sorry you need to login to upload</h3>
           )}

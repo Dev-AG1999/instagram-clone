@@ -9,27 +9,45 @@ import "../profile-pages/style.css";
 
 
 export const ProfileUser=({user,username})=>{
-    const [openProfile, setOpenProfile] = useState(false);
+
     const [posts, setPosts] = useState([]);
+  const [currentUserId,setCurrentUserId]=useState(0);
 
     useEffect(() => {
 
+// currentUserId.push({
+//   id: Math.random(),
+
+// });
+// console.log("cui",currentUserId)
+// setCurrentUserId(currentUserId);
+//   const newArray=  posts.filter((post)=>{
+//       return post.id!==currentUserId
+//     })
+//     setPosts(newArray)
+  
         db.collection("post")
-          .orderBy("timestamp", "desc")
-          .onSnapshot((snapshot) => {
-            setPosts(
-              snapshot.docs.map((doc) => ({
-                id: doc.id,
-                post: doc.data(),
-              }))
-            );
-          });
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) => {
+          setPosts(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              post: doc.data(),
+              // userId : doc.currentUserId
+          
+            }))
+          );
+        });
+      
       }, []);
 
-    const BackBtn = (e) => {
-        e.preventDefault();
-        setOpenProfile(false);
-      };
+
+  
+
+    // const BackBtn = (e) => {
+    //     e.preventDefault();
+    //     setOpenProfile(false);
+    //   };
 
 
     return(
@@ -44,7 +62,7 @@ export const ProfileUser=({user,username})=>{
           fontSize: "20px",
           cursor: "pointer",
         }}
-        onClick={BackBtn}
+        // onClick={BackBtn}
       >
         <strong>↩</strong>
       </button>
@@ -84,6 +102,7 @@ export const ProfileUser=({user,username})=>{
             src={post.image}
             postId={id}
             user={username}
+            userId={post.newId}
           />
         ))}
       </div>

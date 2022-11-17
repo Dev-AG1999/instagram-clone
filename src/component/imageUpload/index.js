@@ -6,11 +6,11 @@ import "firebase/compat/firestore";
 import { storage, db } from "../../firebase";
 import "../imageUpload/style.css";
 
-const ImageUpload = ({ username }) => {
+const ImageUpload = ({ username,userId }) => {
   const [caption, setCaption] = useState("");
   const [progress, setProgress] = useState(0);
   const [image, setImage] = useState(null);
-  // const [open, setOpen] = useState(false);
+
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -42,6 +42,7 @@ const ImageUpload = ({ username }) => {
               caption: caption,
               image: url,
               username: username,
+              postedBy:userId
             });
             setProgress(0);
             setCaption("");

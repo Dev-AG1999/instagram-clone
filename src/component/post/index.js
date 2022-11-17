@@ -21,6 +21,7 @@ function Post({ userimage, postId, username, user, image, caption }) {
   const [postOption, setPostOption] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [currentUserId,setCurrentUserId]=useState(false);
   
 
 
@@ -57,6 +58,9 @@ function Post({ userimage, postId, username, user, image, caption }) {
         );
       });
   }, []);
+
+
+
 
   // back button
   const BackBtn = (e) => {
